@@ -1,0 +1,52 @@
+{
+  "messages": [
+    {
+      "Id": "xjbnauoorlsntxds-ilqnczcy-wiob-kzcb-ziov-oxhnyekcygsr-hfbfjn",
+      "Region": "us-east-1",
+      "Destination": {
+        "ToAddresses": [
+          "test.signup.parse@test.com"
+        ]
+      },
+      "Source": "no-reply@paystashio.com",
+      "Subject": "",
+      "Body": {
+        "text_part": "",
+        "html_part": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <title></title>\n    <style>\n        body {\n            background-color: black;\n            color: aquamarine;\n        }\n\n        div.body#content {\n            background-color: rgb(45, 45, 45);\n            color: white;\n            width: 80%;\n            margin-left: auto;\n            margin-right: auto;\n            font-family: 'Open Sans', Arial, Helvetica, sans-serif\n        }\n    </style>\n</head>\n\n<body>\n<div class=\"body\" id=\"content\" style=\"color:black; font-size: 14px;\">\n    <!-- email header -->\n    <div>\n        \n    <h1>Welcome to Paystashio</h1>\n\n    </div>\n    <!-- email body content -->\n    <div>\n        \n    You have created an account on Paystashio for:<br>\n    <h2>Piet se besigheid</h2>\n\n    </div>\n    <!-- email footer content -->\n    <div>\n        \n\n\n        <p>Best Regards - The Iris Team</p>\n    </div>\n    <div>\n        <img ses:no-track src=\"https://iris-frontend-dev.dev.byteorbit.co/logo-icon.png\" alt=\"Iris Streaming\"\n             width=\"auto\" height=\"82\" />\n    </div>\n</div>\n</body>\n\n</html>"
+      },
+      "Timestamp": "2024-02-26T13:38:12"
+    },
+    {
+      "Id": "nmhfdkydymqpedyf-itvugeez-oujq-fmvg-acbo-yjgxgartxqtq-stnuqc",
+      "Region": "us-east-1",
+      "Destination": {
+        "ToAddresses": [
+          "test.signup.parse@test.com"
+        ]
+      },
+      "Source": "no-reply@paystashio.com",
+      "Subject": "",
+      "Body": {
+        "text_part": "",
+        "html_part": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <title></title>\n    <style>\n        body {\n            background-color: black;\n            color: aquamarine;\n        }\n\n        div.body#content {\n            background-color: rgb(45, 45, 45);\n            color: white;\n            width: 80%;\n            margin-left: auto;\n            margin-right: auto;\n            font-family: 'Open Sans', Arial, Helvetica, sans-serif\n        }\n    </style>\n</head>\n\n<body>\n<div class=\"body\" id=\"content\" style=\"color:black; font-size: 14px;\">\n    <!-- email header -->\n    <div>\n        \n    <h1>Welcome to Paystashio</h1>\n\n    </div>\n    <!-- email body content -->\n    <div>\n        \n    You have created an account on Paystashio for:<br>\n    <h2>Piet se besigheid</h2>\n\n    </div>\n    <!-- email footer content -->\n    <div>\n        \n\n\n        <p>Best Regards - The Iris Team</p>\n    </div>\n    <div>\n        <img ses:no-track src=\"https://iris-frontend-dev.dev.byteorbit.co/logo-icon.png\" alt=\"Iris Streaming\"\n             width=\"auto\" height=\"82\" />\n    </div>\n</div>\n</body>\n\n</html>"
+      },
+      "Timestamp": "2024-02-28T14:25:39"
+    },
+    {
+      "Id": "ubueavjygjrenbrt-wpcwpyne-tkvz-zpgy-sdjf-rprfwabxfrlp-bcvjia",
+      "Region": "us-east-1",
+      "Destination": {
+        "ToAddresses": [
+          "test.signup.parse@test.com"
+        ]
+      },
+      "Source": "no-reply@paystashio.com",
+      "Subject": "",
+      "Body": {
+        "text_part": "",
+        "html_part": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <title></title>\n    <style>\n        body {\n            background-color: black;\n            color: aquamarine;\n        }\n\n        div.body#content {\n            background-color: rgb(45, 45, 45);\n            color: white;\n            width: 80%;\n            margin-left: auto;\n            margin-right: auto;\n            font-family: 'Open Sans', Arial, Helvetica, sans-serif\n        }\n    </style>\n</head>\n\n<body>\n<div class=\"body\" id=\"content\" style=\"color:black; font-size: 14px;\">\n    <!-- email header -->\n    <div>\n        \n    <h1>Welcome to Paystashio</h1>\n\n    </div>\n    <!-- email body content -->\n    <div>\n        \n    You have created an account on Paystashio for:<br>\n    <h2>Piet se besigheid</h2>\n\n    </div>\n    <!-- email footer content -->\n    <div>\n        \n\n\n        <p>Best Regards - The Iris Team</p>\n    </div>\n    <div>\n        <img ses:no-track src=\"https://iris-frontend-dev.dev.byteorbit.co/logo-icon.png\" alt=\"Iris Streaming\"\n             width=\"auto\" height=\"82\" />\n    </div>\n</div>\n</body>\n\n</html>"
+      },
+      "Timestamp": "2024-02-28T14:26:36"
+    }
+  ]
+}       
