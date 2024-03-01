@@ -10,8 +10,10 @@
       label="External Host"
       :rules="hostRules"
     />
-
+  </v-form>
+  <v-card-actions>
     <v-row class="px-3">
+      <ButtonLocalstackHealth />
       <v-spacer/>
       <v-btn
         class="mx-2"
@@ -26,7 +28,7 @@
         Save
       </v-btn>
     </v-row>
-  </v-form>
+  </v-card-actions>
 </v-card>
 </template>
 
@@ -34,6 +36,7 @@
 import { useLocalstackStore } from '@/stores/localstack'
 import { ref } from 'vue'
 import type { VForm } from 'vuetify/components'
+import ButtonLocalstackHealth from '@/components/button/ButtonLocalstackHealth.vue'
 
 const localstackStore = useLocalstackStore();
 
@@ -57,6 +60,7 @@ async function submit() {
     localstackStore.$patch({
       host: host.value
     });
+    localstackStore.healthCheck().then();
   }
 }
 

@@ -1,8 +1,8 @@
 <template>
-  <v-layout class="fill-height w-100 pb-2">
+  <v-container class="fill-height w-100 pb-2 bg-grey-lighten-3 rounded">
     <v-col
       cols="3"
-      class="fill-height bg-grey-lighten-3 rounded"
+      class="fill-height bg-transparent rounded"
     >
       <v-virtual-scroll
         height="100%"
@@ -20,7 +20,7 @@
     <v-col cols="9" class="fill-height px-1 py-0">
       <EmailViewer v-if="selectedEmail" :email="selectedEmail"/>
     </v-col>
-  </v-layout>
+  </v-container>
 </template>
 
 <script setup lang="ts">

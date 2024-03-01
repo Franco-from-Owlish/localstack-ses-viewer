@@ -1,10 +1,13 @@
-import { useLocalStorage } from "@vueuse/core";
-import { defineStore } from 'pinia';
+import { useLocalStorage, useSessionStorage } from '@vueuse/core'
+import { defineStore } from 'pinia'
 import { Endpoints } from '@/stores/emails/endpoints'
 import { computed } from 'vue'
 
-type ServiceStatus = "available" | "running" | "error";
-type SupportedServices = "ses"
+export const supportedServices = ["ses"] as const;
+export type SupportedServices = typeof supportedServices[number];
+
+export type ServiceStatus = "available" | "running" | "error";
+
 type SupportedServicesStatus = Record<SupportedServices, ServiceStatus>;
 
 interface HealthCheckResponse {
@@ -28,31 +31,38 @@ export const useLocalstackStore = defineStore('localstack', () => {
   /**
    * Status of the supported services
    */
-  const services = useLocalStorage<SupportedServicesStatus>(
+  const services = useSessionStorage<SupportedServicesStatus>(
     'localstack_services', { 'ses': 'error' }
   );
 
+  /**
+   * Get the status of a specified service
+   */
   const serviceStatus = computed<
     (serviceName: SupportedServices) => ServiceStatus
   >(
     () => function(serviceName: SupportedServices): ServiceStatus {
       return services.value[serviceName];
   });
-
   /**
-   * Set host value
-   * @param hostUrl
+   * Get the status of all supported services
    */
-  function setHost(hostUrl: string) {
-    host.value = hostUrl;
-  }
+  const status = computed<boolean>(() => {
+    for (const service of Object.keys(services.value)) {
+      const status = serviceStatus.value(<SupportedServices>service);
+      if (status != 'running') {
+        return false;
+      }
+    }
+    return true;
+  });
 
   /**
    * Localstack health check. Ensure the supported services are working.
    * @param externalHost Host where localstack is accessible.
    * @return Boolean indicating if the services are healthy.
    */
-  async function healthCheck(externalHost: string = host.value): Promise<boolean> {
+  async function healthCheck(externalHost: string = host.value): Promise<void> {
     let data: HealthCheckResponse;
     try {
       const response = await fetch(
@@ -64,19 +74,13 @@ export const useLocalstackStore = defineStore('localstack', () => {
       );
       data = await response.json();
     } catch (e) {
-      return false;
+      return;
     }
     if (data) {
-      for (const service in Object.keys(services.value)) {
-        const status = data.services[service];
-        services.value[<SupportedServices>service] = status;
-        if (status != 'running') {
-          return false;
-        }
+      for (const service of Object.keys(services.value)) {
+        services.value[<SupportedServices>service] = data.services[service];
       }
-      return true;
     }
-    return false;
   }
 
   return {
@@ -85,9 +89,9 @@ export const useLocalstackStore = defineStore('localstack', () => {
 
     // getters
     serviceStatus,
+    status,
 
     // actions
-    healthCheck,
-    setHost
+    healthCheck
   }
 })
