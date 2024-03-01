@@ -2,7 +2,7 @@ import { computed } from 'vue'
 import { defineStore } from 'pinia'
 import type { IEmail, ILocalstackSesMessage, ILocalstackSesResponse } from '@/stores/emails/models'
 import { localstackApi } from '@/modules/axios'
-import { sesEndpoint } from '@/stores/emails/endpoints'
+import { Endpoints } from '@/stores/emails/endpoints'
 import { useSessionStorage } from '@vueuse/core'
 
 const pollingTimeout: number = 10000;
@@ -18,10 +18,11 @@ export const useEmailStore = defineStore('emails', () => {
   const read = computed<Array<IEmail>>(
     () => emails.value.filter((email: IEmail) => !email.Read)
   );
+
   async function fetchEmails() {
     clearTimeout(fetchTimeoutId);
     const response = await localstackApi
-      .get<ILocalstackSesResponse>(sesEndpoint);
+      .get<ILocalstackSesResponse>(Endpoints.ses);
     fetchTimeoutId = setTimeout(fetchEmails, pollingTimeout);
     if (
       (response.status >= 300) ||

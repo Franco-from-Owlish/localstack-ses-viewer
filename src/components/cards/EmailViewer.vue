@@ -3,11 +3,11 @@
     <v-row class="ma-2">
       <v-table>
         <tr>
-          <td>From</td>
+          <th>From</th>
           <td>{{email.Source}}</td>
         </tr>
         <tr>
-          <td>To</td>
+          <th>To</th>
           <td>
             <v-chip
               v-for="receiver in email.Destination.ToAddresses"
@@ -41,5 +41,9 @@ defineProps<{
 </script>
 
 <style scoped>
-
+th {
+  margin: 2px;
+  padding: 4px;
+  text-align: left;
+}
 </style>

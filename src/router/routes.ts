@@ -8,14 +8,14 @@ const mainRoutes: RouteRecordRaw[] = [
     component: HomeView
   },
   {
-    path: '/about',
-    name: 'about',
-    component: () => import('../views/AboutView.vue')
-  },
-  {
     path: '/emails',
     name: 'emails',
     component: () => import('../views/EmailsView.vue')
+  },
+  {
+    path: '/settings',
+    name: 'settings',
+    component: () => import('../views/SettingsView.vue')
   }
 ];
 

@@ -1,1 +1,4 @@
-export const sesEndpoint: string = "_aws/ses";
+export enum Endpoints {
+  health = "_localstack/health",
+  ses = "_aws/ses"
+}
