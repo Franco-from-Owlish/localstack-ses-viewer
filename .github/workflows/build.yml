@@ -36,7 +36,9 @@ jobs:
         run: yarn prettier src/ --check
 
       - name: Build
-        run: yarn build-only
+        run: |
+          yarn build-only --base /localstack-ses-viewer/
+          cp dist/index.html dist/404.html
         env:
           NODE_ENV: production
 
@@ -63,6 +65,8 @@ jobs:
     # Specify runner + deployment step
     runs-on: ubuntu-latest
     steps:
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
