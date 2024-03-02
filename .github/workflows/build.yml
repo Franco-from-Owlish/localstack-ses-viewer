@@ -2,8 +2,7 @@ name: Build & Deploy
 
 on:
   pull_request:
-    branches:
-      - main
+    branches: [$default-branch]
 
 jobs:
   build:
@@ -37,10 +36,6 @@ jobs:
           NODE_ENV: production
 
       - name: Upload artifact
-        id: upload-dist-artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: localstack-ses-viewer-dist
-          path: dist/
-          retention-days: 30
-          if-no-files-found: error
+          path: ./dist
