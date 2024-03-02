@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <LocalstackSettings class="mx-auto w-75"/>
+    <LocalstackSettings class="mx-auto w-75" />
   </v-container>
 </template>
 
@@ -8,6 +8,4 @@
 import LocalstackSettings from '@/components/settings/LocalstackSettings.vue'
 </script>
 
-<style>
-
-</style>
+<style></style>

@@ -14,6 +14,4 @@ import { supportedServices } from '@/stores/localstack'
 import IconServiceStatus from '@/components/icons/IconServiceStatus.vue'
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

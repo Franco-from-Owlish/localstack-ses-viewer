@@ -1,12 +1,12 @@
 <template>
-  <DefaultLayout/>
+  <DefaultLayout />
 </template>
 
 <script setup lang="ts">
 import DefaultLayout from '@/layout/DefaultLayout.vue'
 import { useLocalstackStore } from '@/stores/localstack'
 
-const localstackStore = useLocalstackStore();
+const localstackStore = useLocalstackStore()
 
-localstackStore.healthCheck();
+localstackStore.healthCheck()
 </script>

@@ -1,20 +1,20 @@
 export interface IDestination {
-  ToAddresses: Array<string>;
+  ToAddresses: Array<string>
 }
 
 export interface IBody {
-  text_part: string;
-  html_part: string;
+  text_part: string
+  html_part: string
 }
 
 export interface ILocalstackSesMessage {
-  Id: string;
-  Body: IBody;
-  Destination: IDestination;
-  Region: string;
-  Source: string;
-  Subject: string;
-  Timestamp: Date;
+  Id: string
+  Body: IBody
+  Destination: IDestination
+  Region: string
+  Source: string
+  Subject: string
+  Timestamp: Date
 }
 
 export interface ILocalstackSesResponse {
@@ -22,5 +22,5 @@ export interface ILocalstackSesResponse {
 }
 
 export interface IEmail extends ILocalstackSesMessage {
-  Read: boolean;
+  Read: boolean
 }

@@ -1,5 +1,5 @@
 import HomeView from '@/views/HomeView.vue'
-import type {RouteRecordRaw} from 'vue-router'
+import type { RouteRecordRaw } from 'vue-router'
 
 const mainRoutes: RouteRecordRaw[] = [
   {
@@ -17,6 +17,6 @@ const mainRoutes: RouteRecordRaw[] = [
     name: 'settings',
     component: () => import('../views/SettingsView.vue')
   }
-];
+]
 
-export default mainRoutes;
+export default mainRoutes

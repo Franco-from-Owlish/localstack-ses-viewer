@@ -27,6 +27,12 @@ jobs:
       - name: Lint
         run: yarn lint
 
+      - name: Type check
+        run: yarn type-check
+
+      - name: Prettier
+        run: yarn prettier src/ --check
+
       - name: Build
         run: yarn build
         env:
