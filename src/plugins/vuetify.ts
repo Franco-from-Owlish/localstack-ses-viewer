@@ -13,9 +13,9 @@ const vuetify = createVuetify({
     defaultSet: 'mdi',
     aliases,
     sets: {
-      mdi,
-    },
+      mdi
+    }
   }
-});
+})
 
-export default vuetify;
+export default vuetify

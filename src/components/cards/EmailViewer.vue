@@ -4,17 +4,13 @@
       <v-table>
         <tr>
           <th>From</th>
-          <td>{{email.Source}}</td>
+          <td>{{ email.Source }}</td>
         </tr>
         <tr>
           <th>To</th>
           <td>
-            <v-chip
-              v-for="receiver in email.Destination.ToAddresses"
-              :key="receiver"
-              pill
-            >
-              {{receiver}}
+            <v-chip v-for="receiver in email.Destination.ToAddresses" :key="receiver" pill>
+              {{ receiver }}
             </v-chip>
           </td>
         </tr>
@@ -22,13 +18,12 @@
     </v-row>
 
     <v-card-title>
-      {{email.Subject ?? "No subject"}}
+      {{ email.Subject ?? 'No subject' }}
     </v-card-title>
 
     <v-card-item>
-      <div v-html="email.Body.html_part"/>
+      <div v-html="email.Body.html_part" />
     </v-card-item>
-
   </v-card>
 </template>
 
@@ -36,7 +31,7 @@
 import type { IEmail } from '@/stores/emails/models'
 
 defineProps<{
-  email: IEmail;
+  email: IEmail
 }>()
 </script>
 

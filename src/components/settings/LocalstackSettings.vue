@@ -1,35 +1,23 @@
 <template>
-<v-card class="pa-4">
-  <v-card-title>
-    Localstack
-  </v-card-title>
-  <v-form ref="form" class="my-2">
-    <v-text-field
-      @update:model-value="resetValidation"
-      v-model="host"
-      label="External Host"
-      :rules="hostRules"
-    />
-  </v-form>
-  <v-card-actions>
-    <v-row class="px-3">
-      <ButtonLocalstackHealth />
-      <v-spacer/>
-      <v-btn
-        class="mx-2"
-        @click="resetForm"
-      >
-        Reset
-      </v-btn>
-      <v-btn
-        class="ml-2"
-        @click="submit"
-      >
-        Save
-      </v-btn>
-    </v-row>
-  </v-card-actions>
-</v-card>
+  <v-card class="pa-4">
+    <v-card-title> Localstack </v-card-title>
+    <v-form ref="form" class="my-2">
+      <v-text-field
+        @update:model-value="resetValidation"
+        v-model="host"
+        label="External Host"
+        :rules="hostRules"
+      />
+    </v-form>
+    <v-card-actions>
+      <v-row class="px-3">
+        <ButtonLocalstackHealth />
+        <v-spacer />
+        <v-btn class="mx-2" @click="resetForm"> Reset </v-btn>
+        <v-btn class="ml-2" @click="submit"> Save </v-btn>
+      </v-row>
+    </v-card-actions>
+  </v-card>
 </template>
 
 <script setup lang="ts">
@@ -38,55 +26,52 @@ import { ref } from 'vue'
 import type { VForm } from 'vuetify/components'
 import ButtonLocalstackHealth from '@/components/button/ButtonLocalstackHealth.vue'
 
-const localstackStore = useLocalstackStore();
+const localstackStore = useLocalstackStore()
 
-const form = ref<VForm>();
-const formValid = ref<boolean>(false);
+const form = ref<VForm>()
+const formValid = ref<boolean>(false)
 
-const host = ref<string>(localstackStore.host);
+const host = ref<string>(localstackStore.host)
 
 const hostRules = [
-  (value: string) => !!value || "Host required",
+  (value: string) => !!value || 'Host required',
   (value: string) =>
-    (value.startsWith('http://') || value.startsWith('https://')) ||
+    value.startsWith('http://') ||
+    value.startsWith('https://') ||
     "Host must start with 'http[s]://",
-  (value: string) =>
-    (value.endsWith('/')) || "Host must end with '/",
+  (value: string) => value.endsWith('/') || "Host must end with '/"
 ]
 
 async function submit() {
-  await validate();
+  await validate()
   if (formValid.value) {
     localstackStore.$patch({
       host: host.value
-    });
-    localstackStore.healthCheck().then();
+    })
+    localstackStore.healthCheck().then()
   }
 }
 
 async function validate() {
   if (form.value) {
     const { valid } = await form.value.validate()
-    formValid.value = valid;
+    formValid.value = valid
   }
 }
 
 function resetValidation() {
   if (form.value) {
-    form.value.resetValidation();
-    formValid.value = false;
+    form.value.resetValidation()
+    formValid.value = false
   }
 }
 
 function resetForm() {
   if (form.value) {
-    form.value.reset();
-    host.value = localstackStore.host;
+    form.value.reset()
+    host.value = localstackStore.host
   }
 }
-
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

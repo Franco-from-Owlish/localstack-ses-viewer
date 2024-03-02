@@ -7,9 +7,7 @@
         link
         :active="currentRoute.path === route.path"
       >
-        <router-link
-          :to="route.path"
-          class="text-decoration-none text-none">
+        <router-link :to="route.path" class="text-decoration-none text-none">
           <v-list-item-title class="text-capitalize text-black">
             {{ route.name }}
           </v-list-item-title>
@@ -26,11 +24,11 @@ import { useRoute } from 'vue-router'
 const currentRoute = useRoute()
 
 interface INavItem {
-  name: string;
-  path: string;
+  name: string
+  path: string
 }
 
-const routes = mainRoutes.map<INavItem>(r => {
+const routes = mainRoutes.map<INavItem>((r) => {
   return {
     name: r.name ?? r.path.slice(1).toUpperCase(),
     path: r.path
@@ -38,6 +36,4 @@ const routes = mainRoutes.map<INavItem>(r => {
 })
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
