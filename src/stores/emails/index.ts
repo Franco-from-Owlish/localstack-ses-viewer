@@ -10,7 +10,7 @@ const pollingTimeout: number = 10000;
 export const useEmailStore = defineStore('emails', () => {
   const emails= useSessionStorage<IEmail[]>('email_emails',[]);
 
-  let fetchTimeoutId: number;
+  let fetchTimeoutId: ReturnType<typeof setTimeout>;
 
   const unread = computed<Array<IEmail>>(
     () => emails.value.filter((email: IEmail) => email.Read)
