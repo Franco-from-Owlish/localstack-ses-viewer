@@ -6,37 +6,23 @@ on:
       - main
 
 jobs:
-  build:
+  deploy:
+    # Add a dependency to the build job
+    needs: build
+
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+
+    # Deploy to the github-pages environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    # Specify runner + deployment step
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@master
-        with:
-          persist-credentials: false
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Install dependencies
-        run: |
-          yarn --version
-          yarn install --immutable --verbose
-
-      - name: Lint
-        run: yarn lint
-
-      - name: Build
-        run: yarn build
-        env:
-          NODE_ENV: production
-
-      - name: Upload artifact
-        id: upload-artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: localstack-ses-viewer
-          path: dist/
-          retention-days: 7
-          if-no-files-found: error
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
