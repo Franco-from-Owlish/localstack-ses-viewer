@@ -38,14 +38,14 @@ jobs:
         run: yarn prettier src/ --check
 
       - name: Build
-        run: yarn build
+        run: yarn build-only
         env:
           NODE_ENV: production
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: out/
+          path: dist/
 
     # Single deploy job since we're just deploying
   deploy:
