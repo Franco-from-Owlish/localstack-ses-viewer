@@ -7,4 +7,4 @@ pipeline-simulation:
     yarn lint
     yarn type-check
     yarn prettier src/ --check
-    yarn build
+    yarn build-only
