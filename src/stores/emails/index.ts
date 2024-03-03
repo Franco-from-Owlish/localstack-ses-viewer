@@ -28,7 +28,9 @@ export const useEmailStore = defineStore('emails', () => {
     }
 
     const emailIds = emails.value.map<string>((e) => e.Id)
-    const newEmails = response.data.messages.filter((email) => !emailIds.includes(email.Id))
+    const newEmails = response.data.messages.filter((email) => !emailIds.includes(email.Id));
+
+    newEmails.sort((a, b) => a.Timestamp < b.Timestamp ? 1 : -1);
 
     // add new emails
     emails.value.push(
@@ -38,7 +40,7 @@ export const useEmailStore = defineStore('emails', () => {
           Read: false
         }
       })
-    )
+    );
   }
 
   return {
