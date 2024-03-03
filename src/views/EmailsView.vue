@@ -1,5 +1,5 @@
 <template>
-  <v-container class="fill-height w-100 pb-2 bg-grey-lighten-3 rounded">
+  <ContainerMain>
     <v-col cols="3" class="fill-height bg-transparent rounded">
       <v-virtual-scroll height="100%" :items="emailStore.emails">
         <template #default="{ item }">
@@ -14,7 +14,7 @@
     <v-col cols="9" class="fill-height px-1 py-0">
       <EmailViewer v-if="selectedEmail" :email="selectedEmail" />
     </v-col>
-  </v-container>
+  </ContainerMain>
 </template>
 
 <script setup lang="ts">
@@ -23,6 +23,7 @@ import type { IEmail } from '@/stores/emails/models'
 import EmailPreview from '@/components/cards/EmailPreview.vue'
 import { ref } from 'vue'
 import EmailViewer from '@/components/cards/EmailViewer.vue'
+import ContainerMain from '@/components/conatainers/ContainerMain.vue'
 
 const emailStore = useEmailStore()
 
