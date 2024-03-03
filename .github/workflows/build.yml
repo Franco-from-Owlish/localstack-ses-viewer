@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: "pages"
+  group: "build"
   cancel-in-progress: true
 
 jobs:
@@ -19,12 +19,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Install dependencies
-        run: yarn install --immutable
+        uses: ./.github/actions/setup-node
 
       - name: Lint
         run: yarn lint
@@ -36,37 +31,4 @@ jobs:
         run: yarn prettier src/ --check
 
       - name: Build
-        run: |
-          yarn build-only --base /localstack-ses-viewer/
-          cp dist/index.html dist/404.html
-        env:
-          NODE_ENV: production
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist/
-
-    # Single deploy job since we're just deploying
-  deploy:
-    # Deploy to the github-pages environment
-    needs: build
-    if: (github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch')
-
-    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
-    permissions:
-      pages: write      # to deploy to Pages
-      id-token: write   # to verify the deployment originates from an appropriate source
-
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
-    # Specify runner + deployment step
-    runs-on: ubuntu-latest
-    steps:
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+        uses: ./.github/actions/build
