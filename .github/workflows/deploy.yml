@@ -1,8 +1,9 @@
 name: Deploy
 
 on:
-  push:
-    branches: [$default-branch]
+  pull_request:
+    types:
+      - closed
   workflow_dispatch:
 
 concurrency:
@@ -11,6 +12,7 @@ concurrency:
 
 jobs:
   build:
+    if: github.event.pull_request.merged == true && github.base_ref == 'main'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -27,21 +29,18 @@ jobs:
       - name: Build
         uses: ./.github/actions/build
 
-    # Single deploy job since we're just deploying
   deploy:
-    # Deploy to the github-pages environment
+    if: github.event.pull_request.merged == true && github.base_ref == 'main'
     needs: build
 
-    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
     permissions:
-      pages: write      # to deploy to Pages
-      id-token: write   # to verify the deployment originates from an appropriate source
+      pages: write
+      id-token: write
 
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
-    # Specify runner + deployment step
     runs-on: ubuntu-latest
     steps:
       - name: Setup Pages
