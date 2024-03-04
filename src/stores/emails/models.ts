@@ -14,7 +14,7 @@ export interface ILocalstackSesMessage {
   Region: string
   Source: string
   Subject: string
-  Timestamp: Date
+  Timestamp: string
 }
 
 export interface ILocalstackSesResponse {

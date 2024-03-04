@@ -1,7 +1,11 @@
 <template>
-  <v-card class="fill-height pa-2 mt-4">
+  <v-card class="fill-height pa-2 my-4">
     <v-row class="ma-2">
       <v-table>
+        <tr>
+          <th scope="row">Sent</th>
+          <td>{{ new Date(email.Timestamp) }}</td>
+        </tr>
         <tr>
           <th scope="row">From</th>
           <td>{{ email.Source }}</td>

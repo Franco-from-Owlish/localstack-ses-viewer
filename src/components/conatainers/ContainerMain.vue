@@ -1,5 +1,5 @@
 <template>
-  <v-container class="main-container my-0 pb-2 pt-4 bg-grey-lighten-3 rounded overflow-y-auto">
+  <v-container class="main-container">
     <v-row>
       <slot />
     </v-row>
@@ -9,9 +9,16 @@
 <script setup lang="ts">
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import "vuetify";
+
 .main-container {
-  max-height: calc(100vh - 90px - 16px - 16px);
+  height: calc(100vh - 122px);
   width: 100%;
+  @extend .overflow-y-auto;
+  @extend .my-0;
+  @extend .py-4;
+  @extend .bg-grey-lighten-3;
+  @extend .rounded;
 }
 </style>

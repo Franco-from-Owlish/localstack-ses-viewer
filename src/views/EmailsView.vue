@@ -1,7 +1,7 @@
 <template>
   <ContainerMain>
-    <v-col cols="3" class="fill-height bg-transparent rounded">
-      <v-virtual-scroll height="100%" :items="emailStore.emails">
+    <v-col cols="3" class="column">
+      <v-virtual-scroll height="800px" :items="emailStore.emails">
         <template #default="{ item }">
           <EmailPreview
             @click="selectedEmail = item"
@@ -11,7 +11,7 @@
         </template>
       </v-virtual-scroll>
     </v-col>
-    <v-col cols="9" class="fill-height px-1 py-0">
+    <v-col cols="9" class="column pl-2 pr-4 py-0">
       <EmailViewer v-if="selectedEmail" :email="selectedEmail" />
     </v-col>
   </ContainerMain>
@@ -33,4 +33,11 @@ const selectedEmail = ref<IEmail>()
 emailStore.fetchEmails()
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+@import "vuetify";
+
+.column {
+  @extends .bg-transparent;
+  @extends .rounded;
+}
+</style>
