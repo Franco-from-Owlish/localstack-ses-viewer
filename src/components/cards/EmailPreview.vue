@@ -10,7 +10,7 @@
         {{ email.Destination.ToAddresses[0] }}
       </v-card-title>
       <v-spacer />
-      <v-badge v-if="!email.Read" inline dot color="red"/>
+      <v-badge v-if="!email.Read" inline dot color="red" />
     </v-row>
     <v-card-subtitle>
       {{ email.Source }}

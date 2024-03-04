@@ -38,16 +38,16 @@ import { useEmailStore } from '@/stores/emails'
 
 const props = defineProps<{
   email: IEmail
-}>();
+}>()
 
-const emailStore = useEmailStore();
+const emailStore = useEmailStore()
 
 onMounted(() => {
-  emailStore.markRead(props.email.Id);
-});
+  emailStore.markRead(props.email.Id)
+})
 onUpdated(() => {
-  emailStore.markRead(props.email.Id);
-});
+  emailStore.markRead(props.email.Id)
+})
 </script>
 
 <style scoped>

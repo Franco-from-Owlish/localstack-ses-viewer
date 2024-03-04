@@ -16,9 +16,9 @@ export const useEmailStore = defineStore('emails', () => {
   const read = computed<Array<IEmail>>(() => emails.value.filter((email: IEmail) => email.Read))
 
   function markRead(id: string) {
-    const idx = emails.value.findIndex((e) => e.Id === id);
+    const idx = emails.value.findIndex((e) => e.Id === id)
     if (idx >= 0) {
-      emails.value[idx].Read = true;
+      emails.value[idx].Read = true
     }
   }
 

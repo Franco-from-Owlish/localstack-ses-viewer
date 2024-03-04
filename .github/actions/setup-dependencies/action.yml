@@ -13,5 +13,5 @@ runs:
           /home/runner/.cache/yarn
           /home/runner/.cache/Cypress
         key: yarn-${{ runner.os }}-${{ hashFiles('./yarn.lock') }}
-    - run: yarn install --immutable --non-interactive
+    - run: yarn install --immutable
       shell: bash

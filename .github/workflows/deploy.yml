@@ -1,4 +1,4 @@
-name: Build & Deploy
+name: Deploy
 
 on:
   push:
@@ -20,6 +20,9 @@ jobs:
 
       - name: Setup Node
         uses: ./.github/actions/setup-node
+
+      - name: Setup dependencies
+        uses: ./.github/actions/setup-dependencies
 
       - name: Build
         uses: ./.github/actions/build
