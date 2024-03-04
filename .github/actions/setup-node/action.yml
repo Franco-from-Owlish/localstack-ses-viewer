@@ -1,0 +1,10 @@
+name: Setup Node
+description: Setup node to the correct version
+
+runs:
+  using: composite
+  steps:
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20

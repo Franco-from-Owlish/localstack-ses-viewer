@@ -24,7 +24,7 @@
 import { useLocalstackStore } from '@/stores/localstack'
 import { ref } from 'vue'
 import type { VForm } from 'vuetify/components'
-import ButtonLocalstackHealth from '@/components/button/ButtonLocalstackHealth.vue'
+import ButtonLocalstackHealth from '@/components/buttons/ButtonLocalstackHealth.vue'
 
 const localstackStore = useLocalstackStore()
 

@@ -12,8 +12,15 @@ export const useEmailStore = defineStore('emails', () => {
 
   let fetchTimeoutId: ReturnType<typeof setTimeout>
 
-  const unread = computed<Array<IEmail>>(() => emails.value.filter((email: IEmail) => email.Read))
-  const read = computed<Array<IEmail>>(() => emails.value.filter((email: IEmail) => !email.Read))
+  const unread = computed<Array<IEmail>>(() => emails.value.filter((email: IEmail) => !email.Read))
+  const read = computed<Array<IEmail>>(() => emails.value.filter((email: IEmail) => email.Read))
+
+  function markRead(id: string) {
+    const idx = emails.value.findIndex((e) => e.Id === id);
+    if (idx >= 0) {
+      emails.value[idx].Read = true;
+    }
+  }
 
   async function fetchEmails() {
     clearTimeout(fetchTimeoutId)
@@ -31,7 +38,7 @@ export const useEmailStore = defineStore('emails', () => {
     const newEmails = response.data.messages.filter((email) => !emailIds.includes(email.Id))
 
     // add new emails
-    emails.value.push(
+    emails.value.unshift(
       ...newEmails.map<IEmail>((e: ILocalstackSesMessage) => {
         return {
           ...e,
@@ -39,6 +46,8 @@ export const useEmailStore = defineStore('emails', () => {
         }
       })
     )
+
+    emails.value.sort((a, b) => (a.Timestamp < b.Timestamp ? 1 : -1))
   }
 
   return {
@@ -50,6 +59,7 @@ export const useEmailStore = defineStore('emails', () => {
     read,
 
     // actions
-    fetchEmails
+    fetchEmails,
+    markRead
   }
 })

@@ -1,13 +1,17 @@
 <template>
-  <v-card class="fill-height pa-2">
+  <v-card class="fill-height pa-2 my-4">
     <v-row class="ma-2">
       <v-table>
         <tr>
-          <th>From</th>
+          <th scope="row">Sent</th>
+          <td>{{ new Date(email.Timestamp) }}</td>
+        </tr>
+        <tr>
+          <th scope="row">From</th>
           <td>{{ email.Source }}</td>
         </tr>
         <tr>
-          <th>To</th>
+          <th scope="row">To</th>
           <td>
             <v-chip v-for="receiver in email.Destination.ToAddresses" :key="receiver" pill>
               {{ receiver }}
@@ -29,10 +33,21 @@
 
 <script setup lang="ts">
 import type { IEmail } from '@/stores/emails/models'
+import { onMounted, onUpdated } from 'vue'
+import { useEmailStore } from '@/stores/emails'
 
-defineProps<{
+const props = defineProps<{
   email: IEmail
-}>()
+}>();
+
+const emailStore = useEmailStore();
+
+onMounted(() => {
+  emailStore.markRead(props.email.Id);
+});
+onUpdated(() => {
+  emailStore.markRead(props.email.Id);
+});
 </script>
 
 <style scoped>

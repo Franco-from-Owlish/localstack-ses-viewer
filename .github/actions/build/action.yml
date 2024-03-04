@@ -1,0 +1,19 @@
+name: Build for deployment
+description: Build only with correct vite base, upload artifact
+
+runs:
+  using: composite
+  steps:
+    - name: Build
+      run: |
+        yarn build-only --base /localstack-ses-viewer/
+        cp dist/index.html dist/404.html
+      env:
+        NODE_ENV: production
+      shell:
+        bash
+
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: dist/
