@@ -34,7 +34,7 @@ emailStore.fetchEmails()
 </script>
 
 <style scoped lang="scss">
-@import "vuetify";
+@import 'vuetify';
 
 .column {
   @extends .bg-transparent;

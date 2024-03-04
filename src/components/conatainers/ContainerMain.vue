@@ -6,11 +6,10 @@
   </v-container>
 </template>
 
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <style scoped lang="scss">
-@import "vuetify";
+@import 'vuetify';
 
 .main-container {
   height: calc(100vh - 122px);
